@@ -8,12 +8,14 @@ import {Editor} from "./editor/editor.tsx"
 import {State} from "../redux/state.ts";
 import {appReducer} from "../redux/reducers/app.ts";
 import {combineReducers} from "redux";
+import {routerReducer} from "react-router-redux";
 
 
 export default function app(): React.ReactElement<any> {
   const store = createStore<State>(
     combineReducers<State>({
-      app: appReducer
+      app: appReducer,
+      routing: routerReducer
     }),
     compose(
       applyMiddleware(thunkMiddleware),
