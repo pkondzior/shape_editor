@@ -1,0 +1,32 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.editor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.palette {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: stretch;
+  border-right: 1px solid black;
+  padding: 5px;
+  width: 100px
+}
+
+.drawing_canvas {
+  order: 0;
+  flex: 1 0 auto;
+  align-self: stretch;
+}

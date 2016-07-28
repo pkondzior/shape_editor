@@ -1,5 +1,12 @@
+var failPlugin = require('webpack-fail-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+
 module.exports = {
-    entry: "./src/main.tsx",
+    entry: {
+        js: "./src/main.tsx",
+        css: "./src/style.css"
+    },
     output: {
         filename: "./dist/bundle.js",
     },
@@ -15,7 +22,8 @@ module.exports = {
     module: {
         loaders: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-            { test: /\.tsx?$/, loader: "ts-loader" }
+            { test: /\.tsx?$/, loader: "ts-loader" },
+            {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')}
         ],
 
         preLoaders: [
@@ -23,6 +31,18 @@ module.exports = {
             { test: /\.js$/, loader: "source-map-loader" }
         ]
     },
+
+    postcss: function(webpack) {
+        return [
+            require("postcss-import")({addDependencyTo: webpack}),
+            require("postcss-cssnext")
+       ];
+    },
+
+    plugins: [
+        failPlugin,
+        new ExtractTextPlugin('./dist/[name].css')
+    ],
 
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
