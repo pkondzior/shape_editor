@@ -1,5 +1,7 @@
+import * as models from "../models.ts";
+
 export interface AppState {
-  shapes: any;
+  shapes: models.Shape[];
 }
 
 export interface State {

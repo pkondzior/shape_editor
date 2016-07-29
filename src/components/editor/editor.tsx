@@ -1,8 +1,8 @@
 import * as React from "react";
 import {Palette} from "../palette/palette.tsx";
-import {DrawingCanvas} from "../drawing_canvas/drawing_canvas.tsx";
+import {DrawingCanvas} from "../../redux/containers/drawing_canvas.ts";
 
-export class Editor extends React.Component<void, {}> {
+export class Editor extends React.Component<{}, void> {
     render() {
         return <div className="editor">
             <Palette />
