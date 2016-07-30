@@ -1,20 +1,28 @@
 import * as React from "react";
 import * as models from "../../models/shapes.ts";
+import * as classNames from "classnames";
 import {Circle} from "../shapes/Circle.tsx";
 import {Square} from "../shapes/Square.tsx";
 import {Triangle} from "../shapes/Triangle.tsx";
+import {ConnectDragSource} from "react-dnd";
+
 
 export interface PaletteItemProps {
   shapeModel: any;
+  isDragging?: boolean;
+  isPreview?: boolean;
+  connectDragSource?: ConnectDragSource;
 }
 
 export class PaletteItem extends React.Component<PaletteItemProps, {}> {
   render() {
-    return <div className="palette-item">
+    const classes = classNames("palette-item", {"palette-item--dragging": !!this.props.isDragging, "palette-item-preview": !!this.props.isPreview});
+    const html = <div className={classes}>
       <svg width={50} height={50}>
         {this.renderShape(this.props.shapeModel) }
       </svg>
     </div>;
+    return this.props.connectDragSource ? this.props.connectDragSource(html) : html;
   }
 
   private renderShape(shapeModel: any) {
