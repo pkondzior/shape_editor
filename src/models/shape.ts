@@ -1,3 +1,5 @@
+export type ShapeConstructor = {new (x: number, y: number, size: number, color: string): Shape}
+
 export abstract class Shape {
   constructor(private _x: number, private _y: number, private _size: number, private _color: string = "green") { }
 

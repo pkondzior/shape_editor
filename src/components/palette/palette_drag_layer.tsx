@@ -30,7 +30,7 @@ class PaletteDragLayerComponent extends React.Component<Props, void> {
         {!this.props.didDrop && item && item.shapeModel &&
           <div className="palette-drag-layer--preview"
             style={this.getItemStyles(this.props)} onTransitionEnd={(e: TransitionEvent) => this.forceUpdate()}>
-            <PaletteItem shapeModel={(item as DraggableProps).shapeModel} isPreview={true} />
+            <PaletteItem shapeModel={(item as DraggableProps).shapeModel} shapeColor={(item as DraggableProps).shapeColor} isPreview={true} />
           </div>}
       </div>);
     this.draggedItem = null;
@@ -71,8 +71,7 @@ function dragLayerProps(monitor: DragSourceMonitor): Props {
     didDrop: monitor.didDrop(),
     initialSourceClientOffset: monitor.getInitialSourceClientOffset(),
     item: monitor.getItem(),
-    sourceClientOffset: monitor.getSourceClientOffset(),
-    
+    sourceClientOffset: monitor.getSourceClientOffset()
   };
 }
 

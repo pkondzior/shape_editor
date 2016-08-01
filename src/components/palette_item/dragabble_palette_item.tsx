@@ -5,20 +5,23 @@ import {
 } from "react-dnd";
 import {getEmptyImage} from "react-dnd-html5-backend";
 import {PaletteItem} from "./palette_item.tsx";
+import {randomColor} from "../../utils/random_color.ts";
 
 
 export interface Props {
-  shapeModel: any;
+  shapeModel: models.ShapeConstructor;
 }
 
 export interface DraggableProps {
-  shapeModel: any;
+  shapeModel: models.ShapeConstructor;
+  shapeColor: string;
 }
 
 const dragSourceSpec: DragSourceSpec<Props> = {
   beginDrag(props: Props): DraggableProps {
     return {
       shapeModel: props.shapeModel,
+      shapeColor: randomColor()
     };
   },
 };
@@ -27,7 +30,7 @@ interface DragSourceProps {
   connectDragSource: ConnectDragSource;
   connectDragPreview: ConnectDragPreview;
   isDragging: boolean;
-}
+} React.Children
 
 function dragSourceProps(connect: DragSourceConnector, monitor: DragSourceMonitor): DragSourceProps {
   return {
@@ -50,4 +53,4 @@ export class DraggablePaletteItemComponent extends React.Component<Props & DragS
   }
 }
 
-export const DraggablePaletteItem = DragSource("dragabble_palette_item", dragSourceSpec, dragSourceProps)(DraggablePaletteItemComponent);
+export const DraggablePaletteItem = DragSource("palette_item", dragSourceSpec, dragSourceProps)(DraggablePaletteItemComponent);
