@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as models from "../../models.ts";
-import {PaletteItem} from "../palette_item/palette_item.tsx";
+import {DraggablePaletteItem} from "../palette_item/dragabble_palette_item.tsx";
 
 export class Palette extends React.Component<void, {}> {
     render() {
         return <div className="palette">
-            <PaletteItem shapeModel={models.Circle} />
-            <PaletteItem shapeModel={models.Triangle} />
-            <PaletteItem shapeModel={models.Square} />
+            <DraggablePaletteItem shapeModel={models.Circle} key="circle" />
+            <DraggablePaletteItem shapeModel={models.Triangle} key="triangle" />
+            <DraggablePaletteItem shapeModel={models.Square} key="square" />
         </div>;
     }
 }

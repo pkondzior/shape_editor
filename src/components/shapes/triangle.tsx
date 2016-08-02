@@ -2,7 +2,7 @@ import * as React from "react";
 import * as models from "../../models/shapes/triangle.ts";
 
 export interface TriangleProps {
-  shape: any;
+  shape: models.Triangle;
 }
 
 export class Triangle extends React.Component<TriangleProps, {}> {

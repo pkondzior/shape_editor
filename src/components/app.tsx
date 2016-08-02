@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import thunkMiddleware from "redux-thunk";
 import {browserHistory, Router, Route} from "react-router";
 import {syncHistoryWithStore, ReactRouterReduxHistory} from "react-router-redux";
-import {Editor} from "./editor/editor.tsx"
+import {EditorDragAndDropContext} from "./editor/editor.tsx"
 import {State} from "../redux/state.ts";
 import {appReducer} from "../redux/reducers/app.ts";
 import {combineReducers} from "redux";
@@ -28,7 +28,7 @@ export default function app(): React.ReactElement<any> {
   return (
     <Provider store={store}>
       <Router history={history}>
-        <Route path="*" component={Editor}/>
+        <Route path="*" component={EditorDragAndDropContext}/>
       </Router>
     </Provider>
   );

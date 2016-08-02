@@ -9,8 +9,8 @@ export class Editor extends React.Component<{}, void> {
     render() {
         return <div className="editor">
             <Palette />
-            <DrawingCanvas />
             <PaletteDragLayer />
+            <DrawingCanvas />
         </div>;
     }
 }
