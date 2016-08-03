@@ -5,13 +5,13 @@ import {DrawingCanvas as DrawingCanvasView,
 import {State} from "../state.ts";
 import * as models from "../../models.ts";
 import {ClientOffset} from "react-dnd";
-import {addShape} from "../actions/drawing_canvas.ts"
+import {addShape, moveShape, selectShape, deselectShape, changeLevel} from "../actions/drawing_canvas.ts"
 
 export const DrawingCanvas = connect(
   (state: State): DrawingCanvasState => {
-    console.log(state.app.shapes);
     return {
-      shapes: state.app.shapes
+      shapes: state.app.shapes,
+      selectedShapeId: state.app.selectedShapeId,
     };
   },
   (dispatch: Dispatch<State>): DrawingCanvasDispatch => {
@@ -19,6 +19,18 @@ export const DrawingCanvas = connect(
       onDropShape: (offset: ClientOffset, shape: models.ShapeConstructor, color: string): void => {
         dispatch(addShape(offset, shape, color));
       },
+      onMove: (x: number, y: number): void => {
+        dispatch(moveShape(x,y))
+      },
+      onSelect: (shapeId: string) => {
+        dispatch(selectShape(shapeId));
+      },
+      onDeselect: () => {
+        dispatch(deselectShape());
+      },
+      onChangeLevel: (direction: string) => {
+        dispatch(changeLevel(direction));
+      }
     };
   }
 )(DrawingCanvasView);
