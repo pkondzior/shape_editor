@@ -14,9 +14,5 @@ const initialState: AppState = {
 };
 
 export function appReducer(state: AppState = initialState, action: Action): AppState {
-  if (drawingCanvasActions.indexOf(action.type) >= 0) {
-    return drawingCanvasReducer(state, action);
-  } else {
-    return state;
-  }
+  return drawingCanvasReducer(state, action)
 }

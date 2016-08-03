@@ -30,7 +30,7 @@ interface DragSourceProps {
   connectDragSource: ConnectDragSource;
   connectDragPreview: ConnectDragPreview;
   isDragging: boolean;
-} React.Children
+}
 
 function dragSourceProps(connect: DragSourceConnector, monitor: DragSourceMonitor): DragSourceProps {
   return {

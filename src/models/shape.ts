@@ -1,7 +1,17 @@
+import {generateUUID} from "../utils/guid.ts"
+
 export type ShapeConstructor = {new (x: number, y: number, size: number, color: string): Shape}
 
 export abstract class Shape {
-  constructor(private _x: number, private _y: number, private _size: number, private _color: string = "green") { }
+  private _id: string;
+
+  constructor(private _x: number, private _y: number, private _size: number, private _color: string = "green") {
+    this._id = generateUUID();
+  }
+
+  get id(): string {
+    return this._id;
+  }
 
   get x(): number {
     return this._x;
